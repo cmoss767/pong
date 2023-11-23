@@ -9,6 +9,7 @@ function App() {
     setPaddlePosition,
     gameStarted,
     setGameStarted,
+    score,
   } = usePongContext();
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "ArrowUp") {
@@ -28,8 +29,12 @@ function App() {
 
   return (
     <>
-      <div className="h-screen flex items-center justify-center bg-color-1 ">
-        <div className="relative w-120 h-64 bg-color-5 border-4 border-color-2">
+      <div className="h-screen flex items-center justify-center bg-color-1 flex-col">
+        {/* Scorecard */}
+        <div className="mb-4 p-4 bg-color-5 text-color-1 text-xl font-bold rounded">
+          Score: {score.left} - {score.right}
+        </div>
+        <div className="relative w-120 h-80 bg-color-5 border-4 border-color-2">
           {!gameStarted && (
             <div className="absolute inset-0 bg-blur flex items-center justify-center z-50">
               <button
@@ -40,6 +45,7 @@ function App() {
               </button>
             </div>
           )}
+
           {/* Paddle 1 */}
           <div
             className=" absolute translate-x-1 w-4 h-16 bg-color-2"

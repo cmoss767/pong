@@ -11,7 +11,7 @@ export default {
         "color-5": "#f6e9ac", // Beige
       },
       width: {
-        120: "30rem",
+        120: "37rem",
       },
     },
   },
