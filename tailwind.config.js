@@ -10,6 +10,9 @@ export default {
         "color-4": "#e9861a", // Orange
         "color-5": "#f6e9ac", // Beige
       },
+      width: {
+        120: "30rem",
+      },
     },
   },
   plugins: [],
