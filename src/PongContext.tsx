@@ -72,24 +72,32 @@ export const PongProvider = ({ children }: PongProviderProps) => {
 
           setBallVelocity((prevVelocity) => ({
             x:
-              ballPosition.x > 50
-                ? prevVelocity.x + 5 / 5 ** 2
-                : prevVelocity.x - 5 / 5 ** 2,
+              prevVelocity.x > 0
+                ? prevVelocity.x + 10 / 10 ** 2
+                : prevVelocity.x - 10 / 10 ** 2,
             y: -prevVelocity.y,
           }));
         }
         // Update the automated paddle position to follow the ball
         setRightPaddlePosition(
           (prevPosition) =>
-            prevPosition + (ballPosition.y - prevPosition - 25) * 0.1
+            prevPosition +
+            (ballPosition.y > 20
+              ? ballPosition.y - prevPosition - 25
+              : ballPosition.y - prevPosition) *
+              0.1
         );
 
         // Check for collision with left paddle
         if (
-          ballPosition.x <= 2 + 10 && // Left edge of the paddle
-          ballPosition.y >= paddlePosition &&
-          ballPosition.y <= paddlePosition + 16
+          ballPosition.x <= 5 && // Left edge of the paddle
+          ballPosition.y >= paddlePosition - 4 &&
+          ballPosition.y <= paddlePosition + 20
         ) {
+          setBallPosition((prevPosition) => ({
+            ...prevPosition,
+            x: 6,
+          }));
           setBallVelocity((prevVelocity) => ({
             ...prevVelocity,
             x: -prevVelocity.x,
@@ -99,9 +107,13 @@ export const PongProvider = ({ children }: PongProviderProps) => {
         // Check for collision with right paddle
         if (
           ballPosition.x >= 94 && // Right edge of the paddle
-          ballPosition.y >= rightPaddlePosition &&
-          ballPosition.y <= rightPaddlePosition + 16
+          ballPosition.y >= rightPaddlePosition - 4 &&
+          ballPosition.y <= rightPaddlePosition + 20
         ) {
+          setBallPosition((prevPosition) => ({
+            ...prevPosition,
+            x: 93,
+          }));
           setBallVelocity((prevVelocity) => ({
             ...prevVelocity,
             x: -prevVelocity.x,

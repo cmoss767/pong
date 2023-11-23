@@ -15,7 +15,7 @@ function App() {
     if (event.key === "ArrowUp") {
       setPaddlePosition((prevPosition) => Math.max(prevPosition - 5, 0));
     } else if (event.key === "ArrowDown") {
-      setPaddlePosition((prevPosition) => Math.min(prevPosition + 5, 100 - 25));
+      setPaddlePosition((prevPosition) => Math.min(prevPosition + 5, 100 - 20));
     }
   };
 
