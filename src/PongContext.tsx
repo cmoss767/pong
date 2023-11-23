@@ -38,8 +38,8 @@ export const PongProvider = ({ children }: PongProviderProps) => {
   });
   const [ballVelocity, setBallVelocity] = useState<{ x: number; y: number }>(
     () => {
-      const initialX = Math.random() * 2 - 1; // Random value between -1 and 1
-      const initialY = Math.random() * 2 - 1; // Random value between -1 and 1
+      const initialX = Math.random() * 2 - 1;
+      const initialY = Math.random() * 2 - 1;
 
       // Normalize the velocity vector
       const magnitude = Math.sqrt(initialX ** 2 + initialY ** 2);
@@ -90,7 +90,7 @@ export const PongProvider = ({ children }: PongProviderProps) => {
 
         // Check for collision with left paddle
         if (
-          ballPosition.x <= 5 && // Left edge of the paddle
+          ballPosition.x <= 5 &&
           ballPosition.y >= paddlePosition - 4 &&
           ballPosition.y <= paddlePosition + 20
         ) {
@@ -106,7 +106,7 @@ export const PongProvider = ({ children }: PongProviderProps) => {
 
         // Check for collision with right paddle
         if (
-          ballPosition.x >= 94 && // Right edge of the paddle
+          ballPosition.x >= 94 &&
           ballPosition.y >= rightPaddlePosition - 4 &&
           ballPosition.y <= rightPaddlePosition + 20
         ) {
@@ -128,10 +128,9 @@ export const PongProvider = ({ children }: PongProviderProps) => {
           }));
           setBallPosition({ x: 50, y: 50 });
           setBallVelocity(() => {
-            const newX = Math.random() * 2 - 1; // Random value between -1 and 1
-            const newY = Math.random() * 2 - 1; // Random value between -1 and 1
+            const newX = Math.random() * 2 - 1;
+            const newY = Math.random() * 2 - 1;
 
-            // Normalize the velocity vector
             const magnitude = Math.sqrt(newX ** 2 + newY ** 2);
             return { x: newX / magnitude, y: newY / magnitude };
           });
@@ -142,15 +141,14 @@ export const PongProvider = ({ children }: PongProviderProps) => {
           setScore((prevScore) => ({ ...prevScore, left: prevScore.left + 1 }));
           setBallPosition({ x: 50, y: 50 });
           setBallVelocity(() => {
-            const newX = Math.random() * 2 - 1; // Random value between -1 and 1
-            const newY = Math.random() * 2 - 1; // Random value between -1 and 1
+            const newX = Math.random() * 2 - 1;
+            const newY = Math.random() * 2 - 1;
 
-            // Normalize the velocity vector
             const magnitude = Math.sqrt(newX ** 2 + newY ** 2);
             return { x: newX / magnitude, y: newY / magnitude };
           });
         }
-      }, 16); // Adjust the interval based on your preference
+      }, 16);
 
       return () => {
         clearInterval(intervalId);
